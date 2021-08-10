@@ -1,0 +1,19 @@
+openapi: 3.0.1
+info:
+  title: BaaS Redoc API
+  version: '2021-05-20T17:25:30Z'
+  description: Banking-as-a-Service API
+  contact:
+    name: PayForward Dev Support
+    email: developersupport@payforward.com
+  license:
+    name: PayForward LLC
+servers:
+  - url: 'https://{environment}.payforward.com/v1'
+    variables:
+      environment:
+        enum:
+          - baas-dev
+          - baas-sandbox
+          - baas
+        default: baas-dev
