@@ -39,7 +39,7 @@ paths:
                     - cardLastFour
                   properties:
                     personId:
-                      $ref: ./models/PersonId.yaml
+                      type: string
                     cardLastFour:
                       type: string
                       description: last four of the card number to be activated
