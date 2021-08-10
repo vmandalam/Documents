@@ -17,3 +17,51 @@ servers:
           - baas-sandbox
           - baas
         default: baas-dev
+paths:
+  /baas/v1/activatecards:
+    description: Errors & Status Codes
+    post:
+      requestBody:
+        description: 'ActivateCards resource activates the card so it can be used. It takes the card number, expiration date and cvv of the card in encrypted format to validate the card and activate it.'
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              properties:
+                requestHeader:
+                  type: string
+                requestDetails:
+                  type: object
+                  additionalProperties: false
+                  required:
+                    - personId
+                    - cardLastFour
+                  properties:
+                    personId:
+                      $ref: ./models/PersonId.yaml
+                    cardLastFour:
+                      type: string
+                      description: last four of the card number to be activated
+                      minLength: 4
+                      maxLength: 4
+              required:
+                - requestHeader
+                - requestDetails
+            examples: {}
+          application/xml:
+            schema:
+              type: object
+            examples:
+              example-1:
+                value:
+                  '': string
+        required: true
+      description: 'Call this API to activate the PayForward issued prepaid debit card [link to card](../../../docs/indexhtml/Index.md#person-data-structure)'
+      operationId: post-baas-v1-activatecards
+      summary: activatecards
+      tags:
+        - Cards
+      responses:
+        '200':
+          description: OK
