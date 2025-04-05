@@ -1,0 +1,33 @@
+//Manage to make it work at last.
+
+$x509 = "MIIEOgIBAzCCBAAGCSqGSIb3DQEHAaCCA/EEggPtMIID6TCCAt8GCSqGSIb3DQEHBqCCAtAwggLMAgEAMIICxQYJKoZIhvcNAQcBMBwGCiqGSIb3DQEMAQYwDgQIGufpIyVUc0YCAggAgIICmJ6SCeI7hiyDnb50JYQ1/UZVqbRwnzBk9TeonmWOffyqoT6kWBYZKWXDNsHtW32TGQQpWHCb4H5vTRB1exgbVFHM2vk2rkZPXIrhT/zQPlk+MSn8HKgEEzMkLdDU+TlZMfwhtLdvE/2x1YOa/2VipfbMhec/6hS/kUbMnwW6afgQZ76cIUnIF99K3mF/k009nf4BVoUX4uhB0eYYKyAtVP5hRQQ1W4dWkvhc6i8BlnNpxKCKe3vSVN1M5xQigF7G8EMaZNDSbyVgFutfkJYj4O/akD/CZvnUjzG6N4pkY5fd8mirhpHnmNK4lUoMtQlRxUR5jHP9NPuQaONj89lPxusNcFGNhLK2hMVEo5IDH4p/TiAJHsFovLK10OyPVOuCl3Vd6PiQF/v6+yE36AzzTr70gvZjpNs9aEsoALgP1ODQLGDFdsOGi5apo4GGLjsVy+B41ufEBXL58Kahu1T7KoPt3M+Luwakyr31QpgTOx1HBnGdy9gSP1jGUoCp0yLBCRk/4ZM+oWMHDyjAYC0JHqJLuHG9NiGmljWka0qq2mCAKiPRlfWVq9EItDjpYaUuJNVlMOYzBacMyQkxvBF/XiDsj5BF7o/hqaWN3/f9AOb5YjE+4Uk/uXb+RLkDzDwHktk3ZrVM/X4kI2NHvCyhotZ4BswsnYE/Syctzozolph4cu3R2vzjmGai1HH9W+B03Ak9g3c9yQuko8PR7pSj4uiSEDtYYj6hY0klyFdPAzeHQm5kanx5a5nNm3ORpAtP3rZNp2r2zk22JCKfxOshIM39DhIaXZNdYXtWLMjSacMsq/qhWuOBnXWIizge3dUk0TtAKSso4LasOVFdgBKOLgmciar8hBEYB8HliAAgliRfAhCJfknwCDUwggECBgkqhkiG9w0BBwGggfQEgfEwge4wgesGCyqGSIb3DQEMCgECoIG0MIGxMBwGCiqGSIb3DQEMAQMwDgQIqbuz6HA0b9UCAggABIGQIP4q1RHUnVcGldrGZ0J2dz9kWx1zq+ddc1LMHOq6pOL0HWIQm733l1wVWP8PJbg2o6l4eT3Ds+MhqljDGblafuMZdTC9YnLRhUpJ4SZn/Kz3pi01vXaxqefvcUd8AwjMxyZQ1Vi6hyFbHDXh7ph1NQtd7pAMdXUGRddpedxh3YtRBqwWUA3kkfBDJg3EgFE2MSUwIwYJKoZIhvcNAQkVMRYEFBTPIIOq9RN9jQoAy/GxalbI9yOmMDEwITAJBgUrDgMCGgUABBQjoXTmtw6daMGcuQrQRhOvzkTDuwQIyFGtNUWG4mACAggA";
+$certPassword = 'Test123';
+$data = base64_decode($x509);
+
+$content = "data to be signed";
+$contentbase64 = base64_encode($content);
+
+
+$isok = openssl_pkcs12_read($data, $certs, $certPassword);
+
+//$key = openssl_x509_read($data);
+
+$filetosign = "c:\\temp\\test.txt";
+$signature = "c:\\temp\\signature.txt";
+
+$issigned = openssl_pkcs7_sign($filetosign, $signature, $certs["cert"], $certs["pkey"], NULL, PKCS7_TEXT);
+
+echo $isok;
+
+
+
+    function sign($signature_pfx_filepath, $signature_pfx_password, $temp_file_dir)
+    {
+
+    }
+
+
+    function verify()
+    {
+
+    }
